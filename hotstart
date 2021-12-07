@@ -1,0 +1,2 @@
+#!/bin/bash
+sh replace-debug.sh && sh start-debug.sh
