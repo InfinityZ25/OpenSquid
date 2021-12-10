@@ -1,15 +1,10 @@
-package us.jcedeno.guns.event;
+package us.jcedeno.cookie.events;
 
 import org.bukkit.event.Event;
 import org.bukkit.event.HandlerList;
 
 import lombok.Getter;
 
-/**
- * An event containing all the boiler plate required for bukkit to read events.
- * 
- * @author jcedeno
- */
 public class BaseEvent extends Event {
 
     private static final @Getter HandlerList HandlerList = new HandlerList();

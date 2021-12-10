@@ -5,7 +5,6 @@ import org.bukkit.entity.ItemFrame;
 import org.bukkit.entity.Player;
 
 import lombok.Getter;
-import us.jcedeno.guns.event.BaseEvent;
 
 /**
  * An event that is fired when a player clicks a specific in a cookie canvas.
