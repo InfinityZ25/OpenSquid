@@ -1,12 +1,12 @@
-package me.aleiv.core.paper.detection.task;
+package us.jcedeno.detection.task;
 
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
-import me.aleiv.core.paper.detection.CollisionManager;
-import me.aleiv.core.paper.detection.events.PlayerEnterPolygonEvent;
-import me.aleiv.core.paper.detection.events.PlayerExitPloygonEvent;
-import me.aleiv.core.paper.detection.objects.Polygon;
+import us.jcedeno.detection.CollisionManager;
+import us.jcedeno.detection.events.PlayerEnterPolygonEvent;
+import us.jcedeno.detection.events.PlayerExitPloygonEvent;
+import us.jcedeno.detection.objects.Polygon;
 
 public class CheckCollisionsTask implements Runnable {
     private CollisionManager collisionManager;

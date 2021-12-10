@@ -29,7 +29,6 @@ import me.aleiv.core.paper.commands.SpecialCMD;
 import me.aleiv.core.paper.commands.SquidCMD;
 import me.aleiv.core.paper.commands.TestCMD;
 import me.aleiv.core.paper.commands.UtilsCMD;
-import me.aleiv.core.paper.detection.CollisionManager;
 import me.aleiv.core.paper.listeners.CanceledListener;
 import me.aleiv.core.paper.listeners.ChairListener;
 import me.aleiv.core.paper.listeners.GlassListener;
@@ -50,6 +49,7 @@ import net.kyori.adventure.title.Title;
 import net.kyori.adventure.title.Title.Times;
 import uk.lewdev.entitylib.FakeEntityPlugin;
 import us.jcedeno.cookie.CookieManager;
+import us.jcedeno.detection.CollisionManager;
 import us.jcedeno.libs.rapidinv.RapidInvManager;
 import us.jcedeno.skins.SkinCMD;
 

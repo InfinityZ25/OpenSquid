@@ -1,8 +1,8 @@
-package me.aleiv.core.paper.detection.events;
+package us.jcedeno.detection.events;
 
 import org.bukkit.entity.Player;
 
-import me.aleiv.core.paper.detection.objects.Polygon;
+import us.jcedeno.detection.objects.Polygon;
 
 /**
  * This event is called when a player exits a polygon.

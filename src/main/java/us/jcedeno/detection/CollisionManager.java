@@ -1,4 +1,4 @@
-package me.aleiv.core.paper.detection;
+package us.jcedeno.detection;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -10,10 +10,10 @@ import org.bukkit.Bukkit;
 
 import lombok.Getter;
 import me.aleiv.core.paper.Core;
-import me.aleiv.core.paper.detection.commands.PolygonCommand;
-import me.aleiv.core.paper.detection.listeners.PolygonListener;
-import me.aleiv.core.paper.detection.objects.Polygon;
-import me.aleiv.core.paper.detection.task.CheckCollisionsTask;
+import us.jcedeno.detection.commands.PolygonCommand;
+import us.jcedeno.detection.listeners.PolygonListener;
+import us.jcedeno.detection.objects.Polygon;
+import us.jcedeno.detection.task.CheckCollisionsTask;
 
 public class CollisionManager {
     private Core instance;

@@ -1,11 +1,11 @@
-package me.aleiv.core.paper.detection.events;
+package us.jcedeno.detection.events;
 
 import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 import lombok.Getter;
-import me.aleiv.core.paper.detection.objects.Polygon;
+import us.jcedeno.detection.objects.Polygon;
 
 /**
  * Event that is fired when a polygon is added to the map.

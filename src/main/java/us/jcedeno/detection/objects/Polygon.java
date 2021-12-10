@@ -1,4 +1,4 @@
-package me.aleiv.core.paper.detection.objects;
+package us.jcedeno.detection.objects;
 
 import org.bukkit.Location;
 import org.bukkit.World;
