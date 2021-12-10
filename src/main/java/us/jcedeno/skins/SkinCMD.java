@@ -2,7 +2,6 @@ package us.jcedeno.skins;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.List;
 import java.util.UUID;
 import java.util.concurrent.CompletableFuture;
@@ -84,7 +83,6 @@ public class SkinCMD extends BaseCommand {
 
                     for (int i = 0; i < 360; i += t) {
                         var angle = Math.toRadians(i);
-                        // TODO Add distance instead of just degrees to the angle
                         var x = Math.cos(angle) * radius;
                         var z = Math.sin(angle) * radius;
 
@@ -211,26 +209,15 @@ public class SkinCMD extends BaseCommand {
         }
     }
 
-    private HashMap<UUID, FakePlayer> minions = new HashMap<>();
-
     @Subcommand("spawn-new")
     public void spawnNewMethod(Player sender) {
         var playerSkin = sender.getPlayerProfile().getProperties().iterator().next();
         var loc = sender.getLocation();
-        // Value es texture data, y signature es skin signature. Toma la posicion actual del sender y el inventario.
+        // Value es texture data, y signature es skin signature. Toma la posicion actual
+        // del sender y el inventario.
         var npc = FakePlayer.of(sender.getName(), loc, playerSkin.getValue(), playerSkin.getSignature());
         // Enseñaselo a los jugadores que deberian de ver a ese npc.
         npc.show(sender);
-
-    }
-
-    @Subcommand("move-here-bruh")
-    public void moveHereBruh(Player sender) {
-        var npc = minions.get(sender.getUniqueId());
-
-        if (npc != null) {
-            var loc = sender.getLocation();
-        }
 
     }
 

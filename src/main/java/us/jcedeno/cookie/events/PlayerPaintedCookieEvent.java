@@ -31,6 +31,7 @@ public class PlayerPaintedCookieEvent extends BaseEvent {
         super(async);
         this.cookieMap = cookieMap;
         this.player = player;
+        this.pixel = pixel;
     }
 
     /**

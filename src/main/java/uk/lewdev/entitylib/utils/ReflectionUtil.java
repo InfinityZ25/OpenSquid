@@ -1,14 +1,14 @@
 package uk.lewdev.entitylib.utils;
 
-import org.bukkit.Bukkit;
-import org.bukkit.entity.Player;
-
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.HashMap;
 import java.util.Map;
+
+import org.bukkit.Bukkit;
+import org.bukkit.entity.Player;
 
 public class ReflectionUtil {
 
@@ -83,7 +83,8 @@ public class ReflectionUtil {
      * @param params The parameters in the constructor
      * @return The constructor object
      */
-    public static Constructor<?> getConstructor(Class<?> clazz, Class<?>... params) throws NoSuchMethodException, SecurityException {
+    public static Constructor<?> getConstructor(Class<?> clazz, Class<?>... params)
+            throws NoSuchMethodException, SecurityException {
         return clazz.getConstructor(params);
     }
 
@@ -115,8 +116,9 @@ public class ReflectionUtil {
      * @param fieldName The name of the field
      * @param value     The value to set the field to.
      */
-    public static void setField(Object obj, String fieldName, Object value) throws NoSuchFieldException, SecurityException, IllegalArgumentException,
-      IllegalAccessException {
+    public static void setField(Object obj, String fieldName, Object value)
+            throws NoSuchFieldException, SecurityException, IllegalArgumentException,
+            IllegalAccessException {
         getField(obj.getClass(), fieldName).set(obj, value);
     }
 
@@ -127,8 +129,8 @@ public class ReflectionUtil {
      * @param fieldName The name of the field
      * @return The field object
      */
-    // TODO: Do more research on storing DECLARED fields in memory.
-    public static Field getDeclaredField(Class<?> clazz, String fieldName) throws NoSuchFieldException, SecurityException {
+    public static Field getDeclaredField(Class<?> clazz, String fieldName)
+            throws NoSuchFieldException, SecurityException {
         Field field = clazz.getDeclaredField(fieldName);
         field.setAccessible(true);
         return field;
@@ -141,8 +143,9 @@ public class ReflectionUtil {
      * @param fieldName The name of the field
      * @param value     The value to set the field to.
      */
-    public static void setDeclaredField(Object obj, String fieldName, Object value) throws NoSuchFieldException, SecurityException, IllegalArgumentException,
-      IllegalAccessException {
+    public static void setDeclaredField(Object obj, String fieldName, Object value)
+            throws NoSuchFieldException, SecurityException, IllegalArgumentException,
+            IllegalAccessException {
         getDeclaredField(obj.getClass(), fieldName).set(obj, value);
     }
 
@@ -154,7 +157,8 @@ public class ReflectionUtil {
      * @param params     Any parameters that the method has
      * @return The method with appropriate paramaters
      */
-    public static Method getMethod(Class<?> clazz, String methodName, Class<?>... params) throws NoSuchMethodException, SecurityException {
+    public static Method getMethod(Class<?> clazz, String methodName, Class<?>... params)
+            throws NoSuchMethodException, SecurityException {
         if (!loadedMethods.containsKey(clazz)) {
             loadedMethods.put(clazz, new HashMap<String, Method>());
         }
@@ -176,8 +180,8 @@ public class ReflectionUtil {
      * @param params     Any parameters that the method has
      * @return The method with appropriate paramaters
      */
-    // TODO: Do more research on storing DECLARED methods in memory.
-    public static Method getDeclaredMethod(Class<?> clazz, String methodName, Class<?>... params) throws NoSuchMethodException, SecurityException {
+    public static Method getDeclaredMethod(Class<?> clazz, String methodName, Class<?>... params)
+            throws NoSuchMethodException, SecurityException {
         Method method = clazz.getDeclaredMethod(methodName, params);
         method.setAccessible(true);
         return method;
@@ -187,8 +191,9 @@ public class ReflectionUtil {
      * @see PacketUtils#getConnection(Player)
      */
     @Deprecated
-    public static Object getConnection(Player player) throws IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchFieldException,
-      SecurityException, NoSuchMethodException {
+    public static Object getConnection(Player player)
+            throws IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchFieldException,
+            SecurityException, NoSuchMethodException {
         Method getHandleMethod = getMethod(player.getClass(), "getHandle");
         Object nmsPlayer = getHandleMethod.invoke(player);
         Field playerConField = getField(nmsPlayer.getClass(), "playerConnection");
@@ -226,13 +231,24 @@ public class ReflectionUtil {
      */
     public enum PackageType {// Just ignore this for now, I'll make it useful
         // someday.
-        MINECRAFT_SERVER("net.minecraft.server." + getVersion()), CRAFTBUKKIT("org.bukkit.craftbukkit." + getVersion()), CRAFTBUKKIT_BLOCK(CRAFTBUKKIT, "block"), CRAFTBUKKIT_CHUNKIO(
-          CRAFTBUKKIT, "chunkio"), CRAFTBUKKIT_COMMAND(CRAFTBUKKIT, "command"), CRAFTBUKKIT_CONVERSATIONS(CRAFTBUKKIT, "conversations"), CRAFTBUKKIT_ENCHANTMENS(
-          CRAFTBUKKIT, "enchantments"), CRAFTBUKKIT_ENTITY(CRAFTBUKKIT, "entity"), CRAFTBUKKIT_EVENT(CRAFTBUKKIT, "event"), CRAFTBUKKIT_GENERATOR(
-          CRAFTBUKKIT, "generator"), CRAFTBUKKIT_HELP(CRAFTBUKKIT, "help"), CRAFTBUKKIT_INVENTORY(CRAFTBUKKIT, "inventory"), CRAFTBUKKIT_MAP(CRAFTBUKKIT,
-          "map"), CRAFTBUKKIT_METADATA(CRAFTBUKKIT, "metadata"), CRAFTBUKKIT_POTION(CRAFTBUKKIT, "potion"), CRAFTBUKKIT_PROJECTILES(CRAFTBUKKIT,
-          "projectiles"), CRAFTBUKKIT_SCHEDULER(CRAFTBUKKIT, "scheduler"), CRAFTBUKKIT_SCOREBOARD(CRAFTBUKKIT, "scoreboard"), CRAFTBUKKIT_UPDATER(
-          CRAFTBUKKIT, "updater"), CRAFTBUKKIT_UTIL(CRAFTBUKKIT, "util");
+        MINECRAFT_SERVER("net.minecraft.server." + getVersion()), CRAFTBUKKIT("org.bukkit.craftbukkit." + getVersion()),
+        CRAFTBUKKIT_BLOCK(CRAFTBUKKIT, "block"), CRAFTBUKKIT_CHUNKIO(
+                CRAFTBUKKIT, "chunkio"),
+        CRAFTBUKKIT_COMMAND(CRAFTBUKKIT, "command"), CRAFTBUKKIT_CONVERSATIONS(CRAFTBUKKIT, "conversations"),
+        CRAFTBUKKIT_ENCHANTMENS(
+                CRAFTBUKKIT, "enchantments"),
+        CRAFTBUKKIT_ENTITY(CRAFTBUKKIT, "entity"), CRAFTBUKKIT_EVENT(CRAFTBUKKIT, "event"), CRAFTBUKKIT_GENERATOR(
+                CRAFTBUKKIT, "generator"),
+        CRAFTBUKKIT_HELP(CRAFTBUKKIT, "help"), CRAFTBUKKIT_INVENTORY(CRAFTBUKKIT, "inventory"),
+        CRAFTBUKKIT_MAP(CRAFTBUKKIT,
+                "map"),
+        CRAFTBUKKIT_METADATA(CRAFTBUKKIT, "metadata"), CRAFTBUKKIT_POTION(CRAFTBUKKIT, "potion"),
+        CRAFTBUKKIT_PROJECTILES(CRAFTBUKKIT,
+                "projectiles"),
+        CRAFTBUKKIT_SCHEDULER(CRAFTBUKKIT, "scheduler"), CRAFTBUKKIT_SCOREBOARD(CRAFTBUKKIT, "scoreboard"),
+        CRAFTBUKKIT_UPDATER(
+                CRAFTBUKKIT, "updater"),
+        CRAFTBUKKIT_UTIL(CRAFTBUKKIT, "util");
 
         private final String path;
 
@@ -269,7 +285,8 @@ public class ReflectionUtil {
          *
          * @param className Name of the desired class
          * @return The class with the specified name
-         * @throws ClassNotFoundException If the desired class with the specified name and package
+         * @throws ClassNotFoundException If the desired class with the specified name
+         *                                and package
          *                                cannot be found
          */
         public Class<?> getClass(String className) throws ClassNotFoundException {

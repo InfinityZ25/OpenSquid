@@ -20,17 +20,13 @@ public class ProtocolLibListeners {
 
     private static boolean hasInit = false;
 
-    private final FakeEntityPlugin plugin;
-
     public ProtocolLibListeners(FakeEntityPlugin plugin) {
         if (hasInit) {
-            this.plugin = plugin;
             return;
         }
 
         hasInit = true;
 
-        this.plugin = plugin;
         this.entityInteractListener();
     }
 

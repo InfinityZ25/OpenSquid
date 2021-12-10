@@ -47,7 +47,10 @@ public class CookieCaseListener implements Listener {
             // Create new cookie
             var cookie = new CookieMap(e.getPlayer().getWorld(), cookieType);
             // Put on map.
-            cookieManager.getCookieMaps().put(e.getPlayer().getUniqueId(), cookie);
+            var oldCookie = cookieManager.getCookieMaps().put(e.getPlayer().getUniqueId(), cookie);
+            // Remove old cookie
+            if (oldCookie != null)
+                oldCookie = null;
 
             // Now attempt to place cookie in ground.
             var block = e.getClickedBlock();

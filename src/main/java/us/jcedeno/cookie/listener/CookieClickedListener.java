@@ -16,6 +16,7 @@ import org.bukkit.inventory.meta.MapMeta;
 import me.aleiv.core.paper.map.packet.WrapperPlayServerMap;
 import us.jcedeno.cookie.CookieManager;
 import us.jcedeno.cookie.events.PlayerClickedCookieEvent;
+import us.jcedeno.cookie.events.PlayerPaintedCookieEvent;
 
 /**
  * Listener for interactions with item frames.
@@ -34,7 +35,7 @@ public class CookieClickedListener implements Listener {
      * Only the player who created the map (or a permission) should be able to
      * interact with it.
      */
-    @EventHandler
+    @EventHandler(priority = EventPriority.HIGHEST, ignoreCancelled = true)
     public void onInteractAtEntity(final PlayerInteractAtEntityEvent e) {
         if (!CookieManager.EDIT)
             return;
@@ -64,7 +65,7 @@ public class CookieClickedListener implements Listener {
      * Event called when a player clicks on a block which contains a map on an item
      * frame above of it.
      */
-    @EventHandler
+    @EventHandler(priority = EventPriority.HIGHEST, ignoreCancelled = true)
     public void onPlayerInteractAtItemFramesBlock(final PlayerInteractEvent e) {
         if (!CookieManager.EDIT || e.getAction() != Action.RIGHT_CLICK_BLOCK || e.getBlockFace() != BlockFace.UP)
             return;
@@ -88,8 +89,8 @@ public class CookieClickedListener implements Listener {
 
     }
 
-    @EventHandler(priority = EventPriority.LOWEST)
-    public void onPlayerPaintedCookie(PlayerClickedCookieEvent e) {
+    @EventHandler
+    public void onPlayerClickedCookie(final PlayerClickedCookieEvent e) {
         // TODO Ensure that players can only edit a cookie if it belongs to them.
         if (CookieManager.EDIT) {
             var player = e.getPlayer();
@@ -108,24 +109,24 @@ public class CookieClickedListener implements Listener {
             // Null safety
             if (cookieMap == null)
                 return;
-            int x, z;
+            byte x = 0;
+            byte z = 0;
             WrapperPlayServerMap packet = null;
-
+            // Handle all the cases based on rotation; improve this later.
             switch (frame.getRotation()) {
-
                 case NONE:
                 case FLIPPED: {
-                    x = (int) (relativeX * 128);
+                    x = (byte) (relativeX * 128);
                     // Add 1 - z to adjust for rotation.
-                    z = (int) ((relativeZ) * 128);
+                    z = (byte) ((relativeZ) * 128);
                     packet = cookieMap.paintPixel(Math.min(127, x), Math.min(127, z), CookieManager.getPaintColor());
                     break;
                 }
                 case CLOCKWISE_45:
                 case FLIPPED_45:
 
-                    z = (int) Math.ceil((position.getX()) * 128);
-                    x = (int) Math.ceil((position.getZ()) * 128);
+                    z = (byte) Math.ceil((position.getX()) * 128);
+                    x = (byte) Math.ceil((position.getZ()) * 128);
                     packet = cookieMap.paintPixel(Math.min(x, 127), Math.min(128 - z, 127),
                             CookieManager.getPaintColor());
 
@@ -133,8 +134,8 @@ public class CookieClickedListener implements Listener {
                 case COUNTER_CLOCKWISE:
                 case CLOCKWISE:
 
-                    x = (int) Math.ceil((position.getX()) * 128);
-                    z = (int) Math.ceil((position.getZ()) * 128);
+                    x = (byte) Math.ceil((position.getX()) * 128);
+                    z = (byte) Math.ceil((position.getZ()) * 128);
                     packet = cookieMap.paintPixel(Math.min(128 - x, 127), Math.min(128 - z, 127),
                             CookieManager.getPaintColor());
 
@@ -142,8 +143,8 @@ public class CookieClickedListener implements Listener {
                 case COUNTER_CLOCKWISE_45:
                 case CLOCKWISE_135:
 
-                    z = (int) Math.ceil((position.getX()) * 128);
-                    x = (int) Math.ceil((position.getZ()) * 128);
+                    z = (byte) Math.ceil((position.getX()) * 128);
+                    x = (byte) Math.ceil((position.getZ()) * 128);
                     packet = cookieMap.paintPixel(Math.min(128 - x, 127), Math.min(127, z),
                             CookieManager.getPaintColor());
 
@@ -151,8 +152,17 @@ public class CookieClickedListener implements Listener {
             }
             if (packet != null) {
                 packet.broadcastPacket();
+                // Call the Event
+                Bukkit.getPluginManager()
+                        .callEvent(PlayerPaintedCookieEvent.of(cookieMap, player, x, z, CookieManager.getPaintColor()));
             }
         }
+    }
+
+    @EventHandler
+    public void onPlayerPaintedMap(final PlayerPaintedCookieEvent e) {
+        // TODO Detection
+
     }
 
 }
