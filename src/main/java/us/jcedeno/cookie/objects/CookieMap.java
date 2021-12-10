@@ -39,6 +39,11 @@ public class CookieMap {
      * A thread-safe 2D byte array to represent the color of all pixels in this map.
      */
     private volatile @Getter Byte[][] asyncPixelCanvas;
+    /**
+     * Volatile variables to keep track of correct paintings and errors.
+     */
+    private @Getter volatile Integer correctPixels = 0;
+    private @Getter volatile Integer incorrectPixels = 0;
 
     private static Material CASE = Material.FERMENTED_SPIDER_EYE;
 
@@ -64,7 +69,17 @@ public class CookieMap {
         this.mapView.setTrackingPosition(false);
         this.mapView.setUnlimitedTracking(false);
         this.mapView.setScale(Scale.CLOSEST);
-        
+
+    }
+
+    public void increaseCorrectPixels() {
+        // TODO Maybe add some more logic here?
+        this.correctPixels++;
+    }
+
+    public void increaseIncorrectPixels() {
+        // TODO Maybe add some more logic here?
+        this.incorrectPixels++;
     }
 
     /**

@@ -2,8 +2,10 @@ package us.jcedeno.cookie.listener;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
+import org.bukkit.SoundCategory;
 import org.bukkit.block.BlockFace;
 import org.bukkit.entity.ItemFrame;
+import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
@@ -12,6 +14,7 @@ import org.bukkit.event.player.PlayerInteractAtEntityEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.MapMeta;
+import org.bukkit.map.MapCanvas;
 
 import me.aleiv.core.paper.map.packet.WrapperPlayServerMap;
 import us.jcedeno.cookie.CookieManager;
@@ -172,7 +175,63 @@ public class CookieClickedListener implements Listener {
          * error = -94
          * ignore/outside = -95
          */
-        e.getPlayer().sendMessage("The pixel you painted was" + e.getPixel());
+        var px = e.getPixel();
+        /**
+         * Pixel count color -93:
+         * 
+         * Creeper = 968 pixeles
+         * Eye = 864 pixeles
+         * Squid = 1040 pixeles
+         * Rodolfo = 1176 pixeles
+         */
+        if (px.color() == -93) {
+            // Correct clicked
+            e.getCookieMap().increaseCorrectPixels();
+            e.getPlayer().playSound(e.getPlayer().getLocation(), "squid:sfx.right", SoundCategory.AMBIENT, 0.25f,
+                    0.0f);
+        } else if (px.color() == -94) {
+            // incorrect clicked
+            e.getCookieMap().increaseIncorrectPixels();
+            // Play error sound
+            e.getPlayer().playSound(e.getPlayer().getLocation(), "squid:sfx.wrong", SoundCategory.AMBIENT, 1.0f, 0.0f);
+        }
+    }
+
+    void countPixelColorsOfMap(MapCanvas canvas, Player player) {
+        int a = 0;
+        int b = 0;
+        int c = 0;
+        int d = 0;
+        if (canvas != null) {
+            // Double for loop from 0 to 127
+            for (int x = 0; x < 128; x++) {
+                for (int z = 0; z < 128; z++) {
+                    // If the pixel is the same color as the one clicked
+                    var pixel = canvas.getPixel(x, z);
+
+                    switch (pixel) {
+                        case -93:
+                            a += (1);
+                            break;
+                        case -94:
+                            b += (1);
+                            break;
+                        case -95:
+                            c += (1);
+                            break;
+                        case -96:
+                            d += (1);
+                            break;
+                    }
+
+                }
+            }
+        }
+        // Send the message to the player
+        player.sendMessage("There are " + a + " pixels of color " + -93 + ".");
+        player.sendMessage("There are " + b + " pixels of color " + -94 + ".");
+        player.sendMessage("There are " + c + " pixels of color " + -95 + ".");
+        player.sendMessage("There are " + d + " pixels of color " + -96 + ".");
     }
 
 }
