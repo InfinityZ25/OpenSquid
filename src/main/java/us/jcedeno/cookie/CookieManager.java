@@ -9,6 +9,7 @@ import org.bukkit.block.Block;
 import org.bukkit.entity.ItemFrame;
 
 import lombok.Getter;
+import lombok.Setter;
 import me.aleiv.core.paper.Core;
 import us.jcedeno.cookie.commands.CookieCMD;
 import us.jcedeno.cookie.listener.CookieCaseListener;
@@ -27,6 +28,7 @@ public class CookieManager {
     private @Getter CookieCMD cookieCMD;
     private @Getter ConcurrentHashMap<UUID, CookieMap> cookieMaps;
     private @Getter volatile HashMap<Block, ItemFrame> frameMap = new HashMap<Block, ItemFrame>();
+    private @Getter @Setter static volatile Byte paintColor = (byte) 24;
 
     public static boolean EDIT = true;
 

@@ -118,7 +118,7 @@ public class CookieClickedListener implements Listener {
                     x = (int) (relativeX * 128);
                     // Add 1 - z to adjust for rotation.
                     z = (int) ((relativeZ) * 128);
-                    packet = cookieMap.paintPixel(Math.min(127, x), Math.min(127, z), (byte) 24);
+                    packet = cookieMap.paintPixel(Math.min(127, x), Math.min(127, z), CookieManager.getPaintColor());
                     break;
                 }
                 case CLOCKWISE_45:
@@ -126,7 +126,8 @@ public class CookieClickedListener implements Listener {
 
                     z = (int) Math.ceil((position.getX()) * 128);
                     x = (int) Math.ceil((position.getZ()) * 128);
-                    packet = cookieMap.paintPixel(Math.min(x, 127), Math.min(128 - z, 127), (byte) 24);
+                    packet = cookieMap.paintPixel(Math.min(x, 127), Math.min(128 - z, 127),
+                            CookieManager.getPaintColor());
 
                     break;
                 case COUNTER_CLOCKWISE:
@@ -134,7 +135,8 @@ public class CookieClickedListener implements Listener {
 
                     x = (int) Math.ceil((position.getX()) * 128);
                     z = (int) Math.ceil((position.getZ()) * 128);
-                    packet = cookieMap.paintPixel(Math.min(128 - x, 127), Math.min(128 - z, 127), (byte) 24);
+                    packet = cookieMap.paintPixel(Math.min(128 - x, 127), Math.min(128 - z, 127),
+                            CookieManager.getPaintColor());
 
                     break;
                 case COUNTER_CLOCKWISE_45:
@@ -142,7 +144,8 @@ public class CookieClickedListener implements Listener {
 
                     z = (int) Math.ceil((position.getX()) * 128);
                     x = (int) Math.ceil((position.getZ()) * 128);
-                    packet = cookieMap.paintPixel(Math.min(128 - x, 127), Math.min(127, z), (byte) 24);
+                    packet = cookieMap.paintPixel(Math.min(128 - x, 127), Math.min(127, z),
+                            CookieManager.getPaintColor());
 
                     break;
             }

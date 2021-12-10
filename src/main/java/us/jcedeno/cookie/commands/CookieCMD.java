@@ -9,6 +9,7 @@ import co.aikar.commands.BaseCommand;
 import co.aikar.commands.annotation.CommandAlias;
 import co.aikar.commands.annotation.CommandCompletion;
 import co.aikar.commands.annotation.CommandPermission;
+import co.aikar.commands.annotation.Default;
 import co.aikar.commands.annotation.Optional;
 import co.aikar.commands.annotation.Subcommand;
 import lombok.NonNull;
@@ -58,6 +59,12 @@ public class CookieCMD extends BaseCommand {
         cookieCase.setItemMeta(itemMeta);
 
         sender.getInventory().addItem(cookieCase);
+
+    }
+
+    @CommandCompletion("[byte]")
+    @Subcommand("paint-color")
+    public void changePaintColor(CommandSender sender, @Default("24") Byte paintColor) {
 
     }
 
