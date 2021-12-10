@@ -64,7 +64,17 @@ public class CookieCMD extends BaseCommand {
 
     @CommandCompletion("[byte]")
     @Subcommand("paint-color")
-    public void changePaintColor(CommandSender sender, @Default("24") Byte paintColor) {
+    public void changePaintColor(CommandSender sender, @Default("24") Integer paintColor) {
+        // Keep color between -128 and 128
+        if (paintColor < -128 || paintColor > 127) {
+            sender.sendMessage(ChatColor.RED + "Invalid color");
+            return;
+        }
+        // Parse to byte
+        byte color = Byte.parseByte("" + paintColor);
+        // Set the color
+        CookieManager.setPaintColor(color);
+        sender.sendMessage(ChatColor.GREEN + "Paint color set to " + color);
 
     }
 
