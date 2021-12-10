@@ -5,6 +5,12 @@ import org.bukkit.event.HandlerList;
 
 import lombok.Getter;
 
+/**
+ * Boiler-plate event designed to quickyl create more events without having to
+ * worry about bukkit's stupid event system.
+ * 
+ * @author jcedeno
+ */
 public class BaseEvent extends Event {
 
     private static final @Getter HandlerList HandlerList = new HandlerList();
