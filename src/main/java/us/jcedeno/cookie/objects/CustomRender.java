@@ -11,7 +11,6 @@ import org.jetbrains.annotations.NotNull;
 import lombok.Getter;
 
 /**
- * 
  * Custom renderer used to quickly paint an image onto a minecraft map canvas.
  * 
  * @author jcedeno

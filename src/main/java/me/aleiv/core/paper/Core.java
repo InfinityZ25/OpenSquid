@@ -51,7 +51,6 @@ import net.kyori.adventure.title.Title.Times;
 import uk.lewdev.entitylib.FakeEntityPlugin;
 import us.jcedeno.cookie.CookieManager;
 import us.jcedeno.libs.rapidinv.RapidInvManager;
-import us.jcedeno.packets.PacketToolManager;
 import us.jcedeno.skins.SkinCMD;
 
 @SpigotPlugin
@@ -67,7 +66,6 @@ public class Core extends JavaPlugin {
     private @Getter SkinCMD skinCMD;
     private @Getter NPCLibrary npcLibrary;
     private @Getter CookieManager cookieManager;
-    private @Getter PacketToolManager packetToolManager;
     private static Gson gson = new GsonBuilder().setPrettyPrinting().create();
     private @Getter FakeEntityPlugin fakeEntityPlugin;
 
@@ -147,7 +145,6 @@ public class Core extends JavaPlugin {
         // Start effect manager
         // Start cookie manager
         this.cookieManager = new CookieManager(this);
-        this.packetToolManager = new PacketToolManager(this);
 
         this.fakeEntityPlugin = new FakeEntityPlugin();
 

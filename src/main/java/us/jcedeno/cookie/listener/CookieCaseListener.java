@@ -16,6 +16,8 @@ import us.jcedeno.cookie.objects.CookieMap;
 
 /**
  * 
+ * Listener for intera
+ * 
  * @author jcedeno
  */
 public class CookieCaseListener implements Listener {
@@ -29,6 +31,10 @@ public class CookieCaseListener implements Listener {
 
     @EventHandler
     public void onPlayerOpenCookieBox(PlayerInteractEvent e) {
+        /*
+         * TODO: Check if player already has one cookie, if so delete the previous one
+         * and replace it with the new one
+         */
         if (e.getItem() == null || !CookieManager.EDIT)
             return;
         if (e.getAction() == Action.RIGHT_CLICK_BLOCK && e.getItem().getType() == Material.FERMENTED_SPIDER_EYE) {

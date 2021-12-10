@@ -1,10 +1,7 @@
 package us.jcedeno.cookie.commands;
 
 import org.bukkit.Material;
-import org.bukkit.block.BlockFace;
 import org.bukkit.command.CommandSender;
-import org.bukkit.entity.EntityType;
-import org.bukkit.entity.ItemFrame;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
@@ -12,7 +9,6 @@ import co.aikar.commands.BaseCommand;
 import co.aikar.commands.annotation.CommandAlias;
 import co.aikar.commands.annotation.CommandCompletion;
 import co.aikar.commands.annotation.CommandPermission;
-import co.aikar.commands.annotation.Default;
 import co.aikar.commands.annotation.Optional;
 import co.aikar.commands.annotation.Subcommand;
 import lombok.NonNull;
@@ -22,6 +18,10 @@ import us.jcedeno.cookie.CookieManager;
 import us.jcedeno.cookie.objects.CookieEnum;
 
 /**
+ * 
+ * A bukkit command that allows users to interact with the cookie system in the
+ * squid game plugin.
+ * 
  * @author jcedeno
  */
 
@@ -39,24 +39,6 @@ public class CookieCMD extends BaseCommand {
         instance.getCommandManager().getCommandCompletions().registerStaticCompletion("cookies",
                 CookieEnum.getAll().stream().map(m -> m.name()).toList());
 
-    }
-
-    @Subcommand("map-async")
-    public void generatePacketEntity(Player sender, @Default("0") Integer rotation) {
-        var targetBlock = sender.getTargetBlock(5);
-        if (targetBlock != null) {
-            // TODO Currently null. Implement a BufferedImage from the original image file
-            // if present.
-            // cookieManager.packetCookieMap(sender, targetBlock.getLocation(), rotation,
-            // null);
-
-            var target = targetBlock.getLocation();
-
-            var frame = (ItemFrame) sender.getWorld()
-                    .spawnEntity(target.getBlock().getRelative(BlockFace.UP).getLocation(), EntityType.ITEM_FRAME);
-
-            sender.sendMessage("Spawning itemframe.");
-        }
     }
 
     @CommandCompletion("@cookies")
