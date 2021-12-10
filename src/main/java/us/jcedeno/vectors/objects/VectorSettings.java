@@ -1,4 +1,4 @@
-package me.aleiv.core.paper.vectors.objects;
+package us.jcedeno.vectors.objects;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

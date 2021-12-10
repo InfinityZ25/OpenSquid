@@ -1,4 +1,4 @@
-package me.aleiv.core.paper.vectors.commands;
+package us.jcedeno.vectors.commands;
 
 import java.util.ArrayList;
 import java.util.List;

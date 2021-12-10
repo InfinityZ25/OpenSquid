@@ -1,4 +1,4 @@
-package me.aleiv.core.paper.vectors;
+package us.jcedeno.vectors;
 
 import java.time.Duration;
 import java.util.HashMap;
@@ -12,13 +12,13 @@ import org.bukkit.util.Vector;
 
 import lombok.Getter;
 import me.aleiv.core.paper.Core;
-import me.aleiv.core.paper.vectors.commands.VectorSettingsCommand;
-import me.aleiv.core.paper.vectors.commands.VectorsCommand;
-import me.aleiv.core.paper.vectors.listener.SettingsListener;
-import me.aleiv.core.paper.vectors.objects.VectorSettings;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.minimessage.MiniMessage;
 import net.kyori.adventure.title.Title;
+import us.jcedeno.vectors.commands.VectorSettingsCommand;
+import us.jcedeno.vectors.commands.VectorsCommand;
+import us.jcedeno.vectors.listener.SettingsListener;
+import us.jcedeno.vectors.objects.VectorSettings;
 
 /**
  * 

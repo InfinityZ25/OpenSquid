@@ -1,11 +1,11 @@
-package me.aleiv.core.paper.vectors.listener;
+package us.jcedeno.vectors.listener;
 
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
 
-import me.aleiv.core.paper.vectors.VectorsManager;
-import me.aleiv.core.paper.vectors.objects.VectorSettings;
+import us.jcedeno.vectors.VectorsManager;
+import us.jcedeno.vectors.objects.VectorSettings;
 
 public class SettingsListener implements Listener {
     private VectorsManager vectorsManager;

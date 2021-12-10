@@ -42,7 +42,6 @@ import me.aleiv.core.paper.listeners.RopeListener;
 import me.aleiv.core.paper.utilities.JsonConfig;
 import me.aleiv.core.paper.utilities.NegativeSpaces;
 import me.aleiv.core.paper.utilities.TCT.BukkitTCT;
-import me.aleiv.core.paper.vectors.VectorsManager;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.minimessage.MiniMessage;
 import net.kyori.adventure.title.Title;
@@ -52,6 +51,7 @@ import us.jcedeno.cookie.CookieManager;
 import us.jcedeno.detection.CollisionManager;
 import us.jcedeno.libs.rapidinv.RapidInvManager;
 import us.jcedeno.skins.SkinCMD;
+import us.jcedeno.vectors.VectorsManager;
 
 @SpigotPlugin
 public class Core extends JavaPlugin {

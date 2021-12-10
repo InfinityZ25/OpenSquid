@@ -1,4 +1,4 @@
-package me.aleiv.core.paper.vectors.commands;
+package us.jcedeno.vectors.commands;
 
 import org.bukkit.entity.Player;
 
@@ -6,8 +6,8 @@ import co.aikar.commands.BaseCommand;
 import co.aikar.commands.annotation.CommandAlias;
 import co.aikar.commands.annotation.Default;
 import co.aikar.commands.annotation.Subcommand;
-import me.aleiv.core.paper.vectors.VectorsManager;
 import net.kyori.adventure.text.minimessage.MiniMessage;
+import us.jcedeno.vectors.VectorsManager;
 
 @CommandAlias("vsettings|vst")
 public class VectorSettingsCommand extends BaseCommand {
