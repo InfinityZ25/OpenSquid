@@ -153,16 +153,26 @@ public class CookieClickedListener implements Listener {
             if (packet != null) {
                 packet.broadcastPacket();
                 // Call the Event
-                Bukkit.getPluginManager()
-                        .callEvent(PlayerPaintedCookieEvent.of(cookieMap, player, x, z, CookieManager.getPaintColor()));
+                var canvas = cookieMap.getMapRenderer().getCanvas();
+                if (canvas != null)
+                    Bukkit.getPluginManager()
+                            .callEvent(PlayerPaintedCookieEvent.of(cookieMap, player, x, z,
+                                    canvas.getPixel(x, z)));
+
             }
         }
     }
 
     @EventHandler
     public void onPlayerPaintedMap(final PlayerPaintedCookieEvent e) {
-        // TODO Detection
-
+        /*
+         * TODO Detection
+         * Color que clickear = -93
+         * Safe zone = -96
+         * error = -94
+         * ignore/outside = -95
+         */
+        e.getPlayer().sendMessage("The pixel you painted was" + e.getPixel());
     }
 
 }

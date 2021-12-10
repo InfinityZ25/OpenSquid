@@ -40,6 +40,8 @@ public class CookieMap {
      */
     private volatile @Getter Byte[][] asyncPixelCanvas;
 
+    private static Material CASE = Material.FERMENTED_SPIDER_EYE;
+
     /**
      * Constructor for the CookieMap object.
      * 
@@ -62,6 +64,7 @@ public class CookieMap {
         this.mapView.setTrackingPosition(false);
         this.mapView.setUnlimitedTracking(false);
         this.mapView.setScale(Scale.CLOSEST);
+        
     }
 
     /**
@@ -79,8 +82,6 @@ public class CookieMap {
 
         return item;
     }
-
-    private static Material CASE = Material.FERMENTED_SPIDER_EYE;
 
     /**
      * A function that returns a case
