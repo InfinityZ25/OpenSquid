@@ -56,7 +56,8 @@ public class CookieMap {
         /** Intialize map with all the important stuff. */
         this.mapView.getRenderers().forEach(mapView::removeRenderer);
         /** Add a custom renderer from the asset location. */
-        this.mapView.addRenderer(new CustomRender(cookieType));
+        this.mapRenderer = new CustomRender(cookieType);
+        this.mapView.addRenderer(this.mapRenderer);
         /** boiler-plate */
         this.mapView.setTrackingPosition(false);
         this.mapView.setUnlimitedTracking(false);

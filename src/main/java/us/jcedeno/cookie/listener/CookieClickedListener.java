@@ -105,6 +105,9 @@ public class CookieClickedListener implements Listener {
             // player.sendMessage("rotation: " + frame.getRotation() + ", " + relativeX + ",
             // " + relativeZ);
             var cookieMap = cookieManager.getCookieMaps().get(player.getUniqueId());
+            // Null safety
+            if (cookieMap == null)
+                return;
             int x, z;
             WrapperPlayServerMap packet = null;
 
