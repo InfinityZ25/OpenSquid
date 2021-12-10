@@ -19,6 +19,7 @@ import lombok.Getter;
 public class CustomRender extends MapRenderer {
     private @Getter MapCanvas canvas;
     private @Getter BufferedImage image;
+    private boolean hasRender = false;
 
     public CustomRender(CookieEnum cookie) {
         this.image = cookie.getBufferedImage();
@@ -26,13 +27,16 @@ public class CustomRender extends MapRenderer {
 
     @Override
     public void render(@NotNull MapView map, @NotNull MapCanvas canvas, @NotNull Player player) {
-        try {
-            canvas.drawImage(0, 0, image);
-            this.canvas = canvas;
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        if (!hasRender) {
+            try {
+                canvas.drawImage(0, 0, image);
+                this.hasRender = true;
+                this.canvas = canvas;
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
 
+        }
     }
 
     /**

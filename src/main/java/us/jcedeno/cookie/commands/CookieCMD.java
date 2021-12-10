@@ -1,7 +1,10 @@
 package us.jcedeno.cookie.commands;
 
 import org.bukkit.Material;
+import org.bukkit.block.BlockFace;
 import org.bukkit.command.CommandSender;
+import org.bukkit.entity.EntityType;
+import org.bukkit.entity.ItemFrame;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
@@ -42,7 +45,16 @@ public class CookieCMD extends BaseCommand {
     public void generatePacketEntity(Player sender, @Default("0") Integer rotation) {
         var targetBlock = sender.getTargetBlock(5);
         if (targetBlock != null) {
-            cookieManager.packetCookieMap(sender, targetBlock.getLocation(), rotation);
+            // TODO Currently null. Implement a BufferedImage from the original image file
+            // if present.
+            // cookieManager.packetCookieMap(sender, targetBlock.getLocation(), rotation,
+            // null);
+
+            var target = targetBlock.getLocation();
+
+            var frame = (ItemFrame) sender.getWorld()
+                    .spawnEntity(target.getBlock().getRelative(BlockFace.UP).getLocation(), EntityType.ITEM_FRAME);
+
             sender.sendMessage("Spawning itemframe.");
         }
     }
@@ -97,21 +109,21 @@ public class CookieCMD extends BaseCommand {
         sender.sendMessage(ChatColor.DARK_AQUA + "Cookie door " + i + " " + bool);
         var tools = instance.getGame().getCookieGame();
         switch (i) {
-        case 1:
-            tools.cookieDoor1(bool);
-            break;
-        case 2:
-            tools.cookieDoor2(bool);
-            break;
-        case 3:
-            tools.cookieDoor3(bool);
-            break;
-        case 4:
-            tools.cookieDoor4(bool);
-            break;
+            case 1:
+                tools.cookieDoor1(bool);
+                break;
+            case 2:
+                tools.cookieDoor2(bool);
+                break;
+            case 3:
+                tools.cookieDoor3(bool);
+                break;
+            case 4:
+                tools.cookieDoor4(bool);
+                break;
 
-        default:
-            break;
+            default:
+                break;
         }
     }
 }

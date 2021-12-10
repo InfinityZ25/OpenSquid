@@ -60,7 +60,7 @@ public class CookieMap {
         /** boiler-plate */
         this.mapView.setTrackingPosition(false);
         this.mapView.setUnlimitedTracking(false);
-        this.mapView.setScale(Scale.FARTHEST);
+        this.mapView.setScale(Scale.CLOSEST);
     }
 
     /**
